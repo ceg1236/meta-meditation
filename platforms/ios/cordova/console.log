@@ -1,0 +1,8 @@
+2014-12-19 17:47:13.454 meditation[13700:827263] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/carlgoldberg/Library/Developer/CoreSimulator/Devices/10D939F7-F855-4BF6-BC12-7BBF5E2F12E2/data/Containers/Data/Application/DC650A30-B545-4088-9438-6F848B3AD7AC/Library/Cookies/Cookies.binarycookies
+2014-12-19 17:47:13.750 meditation[13700:827263] Apache Cordova native platform version 3.7.0 is starting.
+2014-12-19 17:47:13.750 meditation[13700:827263] Multi-tasking -> Device: YES, App: YES
+2014-12-19 17:47:13.774 meditation[13700:827263] Unlimited access to network resources
+2014-12-19 17:47:14.190 meditation[13700:827263] [CDVTimer][keyboard] 0.054002ms
+2014-12-19 17:47:14.190 meditation[13700:827263] [CDVTimer][TotalPluginStartup] 0.207007ms
+2014-12-19 17:47:15.125 meditation[13700:827263] Resetting plugins due to page load.
+2014-12-19 17:47:15.528 meditation[13700:827263] Finished load of: file:///Users/carlgoldberg/Library/Developer/CoreSimulator/Devices/10D939F7-F855-4BF6-BC12-7BBF5E2F12E2/data/Containers/Bundle/Application/0AC5898C-5112-454B-A6A8-888AACEE13CE/meditation.app/www/index.html#/tab/dash
