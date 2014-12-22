@@ -2,6 +2,7 @@
   "name": "meditation",
   "private": "true",
   "devDependencies": {
-    "ionic": "driftyco/ionic-bower#1.0.0-beta.14"
+    "ionic": "driftyco/ionic-bower#1.0.0-beta.14",
+    "leaflet": "~0.7.3"
   }
 }
