@@ -7,3 +7,17 @@ html, body, .mapHeight, #map {
     height: 100%;
 }
 
+.buttons {
+	height: 30%;
+}
+
+#moving {
+	width: 50%;
+	height: 30%;
+}
+
+#sitting {
+	width: 50%;
+	height: 30%;
+}
+
