@@ -3,12 +3,10 @@ angular.module('tsonga.map', [])
 .directive('leafletMap', function() {
 	
 	return {
-		restrict:'EA',
-		replace: true,
+		restrict:'E',
 		scope:{
 
 		},
-		template: '<div style="height: 400px"></div>',
 		link: function(scope, element, attrs) {
 
 			var map = L.map(element[0], {
