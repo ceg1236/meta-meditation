@@ -10,7 +10,7 @@ html, body, .mapHeight{
 leaflet-map {
 	display: block;
 	width: 100%;
-	height: 100%;
+	height: 85%;
 }
 
 .scroll {
@@ -18,7 +18,7 @@ leaflet-map {
 }
 
 .buttons {
-	height: 30%;
+	height: 50%;
 }
 
 #moving {

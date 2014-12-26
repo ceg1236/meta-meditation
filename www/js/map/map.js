@@ -4,13 +4,34 @@ angular.module('tsonga.map', [])
 	
 	return {
 		restrict:'E',
+		// require: '^ngModel', 
 		scope:{
-
+      // 'ngModel' : '=', 
+			state: '='
 		},
 		link: function(scope, element, attrs) {
 
+			var circle;
+			scope.$watch('state.meditating', function(meditating){
+				console.log('Watching', meditating);
+
+				if (meditating) {
+
+					if(!circle){
+					  circle = L.circle(map.getCenter(), 4);
+					} else {
+
+					//update circle to current position
+					}
+					circle.addTo(map);
+				} else {
+					//remove the circle
+					map.removeLayer(circle); 
+				}
+			}, true);
+
 			var map = L.map(element[0], {
-				dragging:true,
+				dragable:true,
 				touchZoom:true,
 				tap:false,
 				zoom: 12, 
@@ -20,10 +41,10 @@ angular.module('tsonga.map', [])
 			function onLocationFound(e) {
 			    var radius = e.accuracy / 2;
 
-			    L.marker(e.latlng).addTo(map)
-			        .bindPopup("You are here!").openPopup();
+			    L.marker(e.latlng).addTo(map);
+			        // .bindPopup("You are here!").openPopup();
 
-			    L.circle(e.latlng, radius).addTo(map);
+			    // L.circle(e.latlng, radius).addTo(map);
 			}
 
 			map.on('locationfound', onLocationFound);

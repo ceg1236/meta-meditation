@@ -1,10 +1,12 @@
 <ion-view view-title="Dashboard">
   <ion-content has-header="true" padding="false">
   <div data-tap-disabled="true" drag-content="false" class="mapHeight">
-    <leaflet-map style="z-index:10;"></leaflet-map>
-  </div>
+    <leaflet-map state="state" style="z-index:10;"></leaflet-map>
   <div class="buttons">
-    <button id="moving">Moving</button><button id="sitting">Sitting</button>
+    <button on-tap="movingTap()" ng-hide="showTimer" id="moving">Moving</button><button on-tap="sittingTap()" ng-hide="showTimer" id="sitting">Sitting</button>
+    <input type="time" ng-show="showTimer" on-tap=""> </input>
+    <button ng-show="meditating">End Session</button>
+  </div>
   </div>
   </ion-content>
 </ion-view>
