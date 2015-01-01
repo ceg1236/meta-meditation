@@ -4,67 +4,41 @@ angular.module('starter.controllers', [])
 
   $scope.state = {}; 
   $scope.state.meditating = false; 
+  $scope.state.mode = null;
+  $scope.endTime = {value: undefined}; 
 
-  $scope.popupTimer = function() {
+  $scope.startTimer = function() {
+    var hours = $scope.endTime.value.getHours();
+    var minutes = $scope.endTime.value.getMinutes() + hours*60;
+    var seconds = $scope.endTime.value.getSeconds() + minutes*60;
+    $scope.state.endTime = Date.now() + seconds*1000; 
     // pop up a timer selector
     // return time selection
-    $scope.state.startTime; 
-  }
+    $scope.state.meditating = true; 
 
-  var startMeditating = function() {
+    $scope.state.startTime = Date.now();
 
-    $scope.state.meditating = true;
-    var meditationTime = $scope.popupTimer(); 
-    $timeout(function() {
-      console.log('timer');   
-      $scope.state.meditating = false; 
-    }, 4000); 
-    
+    console.log($scope.state.endTime); 
+
   }
 
   $scope.movingTap = function() {
-    console.log('Finally moving'); 
+
     $scope.state.mode = 'moving'; 
     $scope.showTimer = true; 
-    startMeditating(); 
-    $scope.drawMoving = function(location) {
-      // Draw moving meditation circle
-    }
 
   }
-  // $scope.bar = "bar";
+
   $scope.sittingTap = function() {
-    console.log('Finally sitting'); 
+
     $scope.state.mode = 'sitting'; 
     $scope.showTimer = true; 
-    startMeditating();
-    $scope.drawSitting = function(location) {
-      // Draw sitting meditation cirlce
-    }
+  }
+
+  $scope.endSession = function() {
+
+    $scope.state.meditating = false; 
+    $scope.showTimer = false; 
   }
 }]);
-
-// .controller('ChatsCtrl', function($scope, Chats) {
-//   $scope.chats = Chats.all();
-//   $scope.remove = function(chat) {
-//     Chats.remove(chat);
-//   }
-// })
-
-// .controller('ChatDetailCtrl', function($scope, $stateParams, Chats) {
-//   $scope.chat = Chats.get($stateParams.chatId);
-// })
-
-// .controller('FriendsCtrl', function($scope, Friends) {
-//   $scope.friends = Friends.all();
-// })
-
-// .controller('FriendDetailCtrl', function($scope, $stateParams, Friends) {
-//   $scope.friend = Friends.get($stateParams.friendId);
-// })
-
-// .controller('AccountCtrl', function($scope) {
-//   $scope.settings = {
-//     enableFriends: true
-
 

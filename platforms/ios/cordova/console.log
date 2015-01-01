@@ -55,3 +55,114 @@
 
   ]
 ]
+2014-12-26 15:21:34.597 meditation[23915:1389453] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/carlgoldberg/Library/Developer/CoreSimulator/Devices/10D939F7-F855-4BF6-BC12-7BBF5E2F12E2/data/Containers/Data/Application/EAC9235B-2E26-472F-A986-24EA3E82ACFE/Library/Cookies/Cookies.binarycookies
+2014-12-26 15:21:34.705 meditation[23915:1389453] Apache Cordova native platform version 3.7.0 is starting.
+2014-12-26 15:21:34.705 meditation[23915:1389453] Multi-tasking -> Device: YES, App: YES
+2014-12-26 15:21:34.707 meditation[23915:1389453] Unlimited access to network resources
+2014-12-26 15:21:34.901 meditation[23915:1389453] CDVPlugin class IonicKeyboard (pluginName: keyboard) does not exist.
+2014-12-26 15:21:34.902 meditation[23915:1389453] [CDVTimer][keyboard] 0.136018ms
+2014-12-26 15:21:34.902 meditation[23915:1389453] [CDVTimer][TotalPluginStartup] 0.247002ms
+2014-12-26 15:21:35.085 meditation[23915:1389453] Resetting plugins due to page load.
+2014-12-26 15:21:35.333 meditation[23915:1389453] Finished load of: file:///Users/carlgoldberg/Library/Developer/CoreSimulator/Devices/10D939F7-F855-4BF6-BC12-7BBF5E2F12E2/data/Containers/Bundle/Application/25071B20-974F-44B1-A27D-E0679E84E111/meditation.app/www/index.html#/tab/dash
+2014-12-26 15:21:35.541 meditation[23915:1389453] CDVPlugin class CDVDevice (pluginName: Device) does not exist.
+2014-12-26 15:21:35.541 meditation[23915:1389453] ERROR: Plugin 'Device' not found, or is not a CDVPlugin. Check your plugin mapping in config.xml.
+2014-12-26 15:21:35.541 meditation[23915:1389453] -[CDVCommandQueue executePending] [Line 158] FAILED pluginJSON = [
+  "Device528529287",
+  "Device",
+  "getDeviceInfo",
+  [
+
+  ]
+]
+2014-12-26 15:56:03.197 meditation[24225:1393714] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/carlgoldberg/Library/Developer/CoreSimulator/Devices/10D939F7-F855-4BF6-BC12-7BBF5E2F12E2/data/Containers/Data/Application/7410A03B-1B0E-45CC-B8C5-D68072B033DA/Library/Cookies/Cookies.binarycookies
+2014-12-26 15:56:03.492 meditation[24225:1393714] Apache Cordova native platform version 3.7.0 is starting.
+2014-12-26 15:56:03.492 meditation[24225:1393714] Multi-tasking -> Device: YES, App: YES
+2014-12-26 15:56:03.517 meditation[24225:1393714] Unlimited access to network resources
+2014-12-26 15:56:03.929 meditation[24225:1393714] CDVPlugin class IonicKeyboard (pluginName: keyboard) does not exist.
+2014-12-26 15:56:03.929 meditation[24225:1393714] [CDVTimer][keyboard] 0.132024ms
+2014-12-26 15:56:03.929 meditation[24225:1393714] [CDVTimer][TotalPluginStartup] 0.258982ms
+2014-12-26 15:56:04.249 meditation[24225:1393714] Resetting plugins due to page load.
+2014-12-26 15:56:04.558 meditation[24225:1393714] Finished load of: file:///Users/carlgoldberg/Library/Developer/CoreSimulator/Devices/10D939F7-F855-4BF6-BC12-7BBF5E2F12E2/data/Containers/Bundle/Application/910FF0F2-B391-40FD-9AEF-6FD3DD614F6A/meditation.app/www/index.html#/tab/dash
+2014-12-26 15:56:04.799 meditation[24225:1393714] CDVPlugin class CDVDevice (pluginName: Device) does not exist.
+2014-12-26 15:56:04.799 meditation[24225:1393714] ERROR: Plugin 'Device' not found, or is not a CDVPlugin. Check your plugin mapping in config.xml.
+2014-12-26 15:56:04.799 meditation[24225:1393714] -[CDVCommandQueue executePending] [Line 158] FAILED pluginJSON = [
+  "Device846788587",
+  "Device",
+  "getDeviceInfo",
+  [
+
+  ]
+]
+2014-12-26 16:34:51.371 meditation[24580:1408103] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/carlgoldberg/Library/Developer/CoreSimulator/Devices/10D939F7-F855-4BF6-BC12-7BBF5E2F12E2/data/Containers/Data/Application/B2A9553E-808F-4AB8-A5EB-CBE66CC94B86/Library/Cookies/Cookies.binarycookies
+2014-12-26 16:34:51.503 meditation[24580:1408103] Apache Cordova native platform version 3.7.0 is starting.
+2014-12-26 16:34:51.503 meditation[24580:1408103] Multi-tasking -> Device: YES, App: YES
+2014-12-26 16:34:51.505 meditation[24580:1408103] Unlimited access to network resources
+2014-12-26 16:34:51.720 meditation[24580:1408103] CDVPlugin class IonicKeyboard (pluginName: keyboard) does not exist.
+2014-12-26 16:34:51.720 meditation[24580:1408103] [CDVTimer][keyboard] 0.212967ms
+2014-12-26 16:34:51.720 meditation[24580:1408103] [CDVTimer][TotalPluginStartup] 0.384033ms
+2014-12-26 16:34:52.009 meditation[24580:1408103] Resetting plugins due to page load.
+2014-12-26 16:34:52.246 meditation[24580:1408103] Finished load of: file:///Users/carlgoldberg/Library/Developer/CoreSimulator/Devices/10D939F7-F855-4BF6-BC12-7BBF5E2F12E2/data/Containers/Bundle/Application/5FC4EDD4-3881-4038-9D2D-007EA9703E3B/meditation.app/www/index.html#/tab/dash
+2014-12-26 16:34:52.466 meditation[24580:1408103] CDVPlugin class CDVDevice (pluginName: Device) does not exist.
+2014-12-26 16:34:52.466 meditation[24580:1408103] ERROR: Plugin 'Device' not found, or is not a CDVPlugin. Check your plugin mapping in config.xml.
+2014-12-26 16:34:52.466 meditation[24580:1408103] -[CDVCommandQueue executePending] [Line 158] FAILED pluginJSON = [
+  "Device637532769",
+  "Device",
+  "getDeviceInfo",
+  [
+
+  ]
+]
+2014-12-31 11:42:54.100 meditation[32338:1789687] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/carlgoldberg/Library/Developer/CoreSimulator/Devices/10D939F7-F855-4BF6-BC12-7BBF5E2F12E2/data/Containers/Data/Application/4DADDE38-8358-498B-8F11-D5DDF18FB804/Library/Cookies/Cookies.binarycookies
+2014-12-31 11:42:54.440 meditation[32338:1789687] Apache Cordova native platform version 3.7.0 is starting.
+2014-12-31 11:42:54.441 meditation[32338:1789687] Multi-tasking -> Device: YES, App: YES
+2014-12-31 11:42:54.465 meditation[32338:1789687] Unlimited access to network resources
+2014-12-31 11:42:54.909 meditation[32338:1789687] CDVPlugin class IonicKeyboard (pluginName: keyboard) does not exist.
+2014-12-31 11:42:54.910 meditation[32338:1789687] [CDVTimer][keyboard] 0.127971ms
+2014-12-31 11:42:54.910 meditation[32338:1789687] [CDVTimer][TotalPluginStartup] 0.640988ms
+2014-12-31 11:42:55.326 meditation[32338:1789687] Resetting plugins due to page load.
+2014-12-31 11:42:55.642 meditation[32338:1789687] Finished load of: file:///Users/carlgoldberg/Library/Developer/CoreSimulator/Devices/10D939F7-F855-4BF6-BC12-7BBF5E2F12E2/data/Containers/Bundle/Application/01BBB3CB-CF04-4C51-AAA9-2060EDFD3C60/meditation.app/www/index.html#/tab/dash
+2014-12-31 11:42:55.922 meditation[32338:1789687] CDVPlugin class CDVDevice (pluginName: Device) does not exist.
+2014-12-31 11:42:55.922 meditation[32338:1789687] ERROR: Plugin 'Device' not found, or is not a CDVPlugin. Check your plugin mapping in config.xml.
+2014-12-31 11:42:55.923 meditation[32338:1789687] -[CDVCommandQueue executePending] [Line 158] FAILED pluginJSON = [
+  "Device730483368",
+  "Device",
+  "getDeviceInfo",
+  [
+
+  ]
+]
+2014-12-31 11:44:38.451 meditation[32338:1789687] -[UIWebView decreaseSize:]: unrecognized selector sent to instance 0x79f66930
+2014-12-31 11:44:38.491 meditation[32338:1789687] *** Terminating app due to uncaught exception 'NSInvalidArgumentException', reason: '-[UIWebView decreaseSize:]: unrecognized selector sent to instance 0x79f66930'
+*** First throw call stack:
+(
+	0   CoreFoundation                      0x002b6946 __exceptionPreprocess + 182
+	1   libobjc.A.dylib                     0x02406a97 objc_exception_throw + 44
+	2   CoreFoundation                      0x002be5c5 -[NSObject(NSObject) doesNotRecognizeSelector:] + 277
+	3   CoreFoundation                      0x002073e7 ___forwarding___ + 1047
+	4   CoreFoundation                      0x00206fae _CF_forwarding_prep_0 + 14
+	5   libobjc.A.dylib                     0x0241c7cd -[NSObject performSelector:withObject:withObject:] + 84
+	6   UIKit                               0x0066b23d -[UIApplication sendAction:to:from:forEvent:] + 99
+	7   UIKit                               0x0066b1cf -[UIApplication sendAction:toTarget:fromSender:forEvent:] + 64
+	8   UIKit                               0x00681be0 -[UIApplication _handleKeyUIEvent:] + 270
+	9   UIKit                               0x00820f61 -[UIResponder(Internal) _handleKeyUIEvent:] + 60
+	10  UIKit                               0x00820f61 -[UIResponder(Internal) _handleKeyUIEvent:] + 60
+	11  UIKit                               0x00820f61 -[UIResponder(Internal) _handleKeyUIEvent:] + 60
+	12  UIKit                               0x00820f61 -[UIResponder(Internal) _handleKeyUIEvent:] + 60
+	13  UIKit                               0x00820f61 -[UIResponder(Internal) _handleKeyUIEvent:] + 60
+	14  UIKit                               0x00820f61 -[UIResponder(Internal) _handleKeyUIEvent:] + 60
+	15  UIKit                               0x00681aca -[UIApplication handleKeyUIEvent:] + 85
+	16  UIKit                               0x00681a6d -[UIApplication handleKeyHIDEvent:] + 459
+	17  UIKit                               0x0068ce6c _UIApplicationHandleEventFromQueueEvent + 3008
+	18  UIKit                               0x00665b19 _UIApplicationHandleEventQueue + 2206
+	19  CoreFoundation                      0x001da1df __CFRUNLOOP_IS_CALLING_OUT_TO_A_SOURCE0_PERFORM_FUNCTION__ + 15
+	20  CoreFoundation                      0x001cfced __CFRunLoopDoSources0 + 253
+	21  CoreFoundation                      0x001cf248 __CFRunLoopRun + 952
+	22  CoreFoundation                      0x001cebcb CFRunLoopRunSpecific + 443
+	23  CoreFoundation                      0x001ce9fb CFRunLoopRunInMode + 123
+	24  GraphicsServices                    0x03a7f24f GSEventRunModal + 192
+	25  GraphicsServices                    0x03a7f08c GSEventRun + 104
+	26  UIKit                               0x006698b6 UIApplicationMain + 1526
+	27  meditation                          0x000c0f8c main + 92
+	28  libdyld.dylib                       0x02adcac9 start + 1
+)
+libc++abi.dylib: terminating with uncaught exception of type NSException

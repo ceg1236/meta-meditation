@@ -11,14 +11,19 @@ angular.module('tsonga.map', [])
 		},
 		link: function(scope, element, attrs) {
 
-			var circle;
-			scope.$watch('state.meditating', function(meditating){
-				console.log('Watching', meditating);
+			var circle, currentLat, currentLng;
+			scope.$watch('state', function(status){
+				console.log('Watching', status);
 
-				if (meditating) {
+				if (status.meditating) {
 
 					if(!circle){
-					  circle = L.circle(map.getCenter(), 4);
+
+					  if (status.mode === 'moving') {
+					  	circle = L.circle([currentLat, currentLng], 4, {fillColor: 'red', color: 'red'});
+					  } else if (status.mode === 'sitting') {
+					  	circle = L.circle([currentLat, currentLng], 4); 
+					  }
 					} else {
 
 					//update circle to current position
@@ -31,9 +36,9 @@ angular.module('tsonga.map', [])
 			}, true);
 
 			var map = L.map(element[0], {
-				dragable:true,
-				touchZoom:true,
-				tap:false,
+				dragable: true,
+				touchZoom: true,
+				tap: false,
 				zoom: 12, 
 				center: [37.741399, -122.43782],
 			});
@@ -42,9 +47,12 @@ angular.module('tsonga.map', [])
 			    var radius = e.accuracy / 2;
 
 			    L.marker(e.latlng).addTo(map);
-			        // .bindPopup("You are here!").openPopup();
+			    console.log('latLng ', e.latlng); 
 
-			    // L.circle(e.latlng, radius).addTo(map);
+
+			    currentLat = e.latlng.lat;
+			    currentLng = e.latlng.lng; 
+
 			}
 
 			map.on('locationfound', onLocationFound);
@@ -53,7 +61,9 @@ angular.module('tsonga.map', [])
 			    maxZoom: 18, 
 			    id: 'examples.map-i875mjb7'
 			}).addTo(map);
-			map.locate( {setView: true, zoom: 12 });
+			map.locate( {setView: true, zoom: 12, watch: true });
+			console.log('map.locate ', map.locate());
 		}
+
 	}
 });
