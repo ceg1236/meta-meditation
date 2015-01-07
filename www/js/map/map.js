@@ -17,17 +17,12 @@ angular.module('tsonga.map', [])
 
 				if (status.meditating) {
 
-					if(!circle){
-
-					  if (status.mode === 'moving') {
-					  	circle = L.circle([currentLat, currentLng], 4, {fillColor: 'red', color: 'red'});
-					  } else if (status.mode === 'sitting') {
-					  	circle = L.circle([currentLat, currentLng], 4); 
-					  }
-					} else {
-
-					//update circle to current position
-					}
+				  if (status.mode === 'moving') {
+				  	circle = L.circle([currentLat, currentLng], 4, {fillColor: 'red', color: 'red'});
+				  } else if (status.mode === 'sitting') {
+				  	circle = L.circle([currentLat, currentLng], 4, {fillColor: 'blue', color: 'blue'}); 
+				  }
+					
 					circle.addTo(map);
 				} else {
 					//remove the circle
@@ -43,15 +38,21 @@ angular.module('tsonga.map', [])
 				center: [37.741399, -122.43782],
 			});
 
+
+			var currentLocation;
 			function onLocationFound(e) {
 			    var radius = e.accuracy / 2;
-
-			    L.marker(e.latlng).addTo(map);
-			    console.log('latLng ', e.latlng); 
-
-
 			    currentLat = e.latlng.lat;
 			    currentLng = e.latlng.lng; 
+
+			    if (currentLocation) { 
+			    	currentLocation.setLatLng( e.latlng ); 
+			    } else {
+			    	currentLocation = L.marker(e.latlng);
+			    	currentLocation.addTo(map);
+			    }
+			    	
+			    console.log('latLng ', e.latlng); 
 
 			}
 
