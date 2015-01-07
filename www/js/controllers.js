@@ -31,8 +31,7 @@ angular.module('starter.controllers', [])
 
   $scope.sittingTap = function() {
 
-    $scope.state.mode = 'sitting'; 
-    console.log('MODE: ', $scope.state.mode); 
+    $scope.state.mode = 'sitting';  
     $scope.showTimer = true; 
   }
 

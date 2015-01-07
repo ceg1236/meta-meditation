@@ -1,7 +1,6 @@
 angular.module('tsonga.map', [])
 
 .directive('leafletMap', function() {
-	
 	return {
 		restrict:'E',
 		// require: '^ngModel', 
@@ -63,7 +62,6 @@ angular.module('tsonga.map', [])
 			    id: 'examples.map-i875mjb7'
 			}).addTo(map);
 			map.locate( {setView: true, zoom: 12, watch: true });
-			console.log('map.locate ', map.locate());
 		}
 
 	}
