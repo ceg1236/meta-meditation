@@ -2,7 +2,8 @@ angular.module('starter.services', [])
 
 .factory('Config', function() {
   return {
-    url: 'http://localhost:8003'
+    url: 'http://localhost:8003', 
+    meditatorID: 123   // TODO: retrieve unique ID from device
   }
 })
 
@@ -12,8 +13,13 @@ angular.module('starter.services', [])
     return $http.get(Config.url + '/meditators'); 
   }
 
+  var meditate = function(mode, latlng){
+    return $http.put(Config.url + '/meditators/'+ Config.meditatorID, {latlng: latlng}); 
+  }
+
   return {
-    findAll: findAll
+    findAll: findAll, 
+    meditate: meditate
   }
 })
 

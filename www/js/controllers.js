@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-.controller('DashCtrl', ['$scope', '$timeout', function($scope, $timeout) {
+.controller('DashCtrl', ['$scope', '$timeout', function($scope, $timeout, Meditators) {
 
   $scope.state = {}; 
   $scope.state.meditating = false; 
@@ -17,9 +17,8 @@ angular.module('starter.controllers', [])
     $scope.state.meditating = true; 
 
     $scope.state.startTime = Date.now();
-
+ 
     console.log($scope.state.endTime); 
-
   }
 
   $scope.movingTap = function() {

@@ -22,6 +22,7 @@ angular.module('tsonga.map', [])
 				  }
 					
 					circle.addTo(map);
+					Meditators.meditate(status.mode, [currentLat, currentLng]); 
 				} else {
 					//remove the circle
 					map.removeLayer(circle); 
@@ -29,7 +30,6 @@ angular.module('tsonga.map', [])
 			}, true);
 
 			scope.$watch('meditators', function(newArray, oldArray, scope) {
-				console.log('new:', newArray); 
 				for(var i = 0; i < newArray.length; i++) {
 					L.circle( newArray[i].latlng, 100, {fillColor: 'green', color: 'green'}).addTo(map);
 				}

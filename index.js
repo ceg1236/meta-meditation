@@ -10,8 +10,11 @@ app.use( bodyParser.urlencoded({extended: false}) );
 app.use(function(req, res, next) {
 
 	res.header('Access-Control-Allow-Origin', '*'); 
+	res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, OPTIONS, DELETE'); 
+	res.header('Access-Control-Allow-Headers', 'Content-Type');
 	next(); 
 });
+app.use(bodyParser.json()); 
 
 app.get('/', function(req, res) {
 	res.send('index');
@@ -29,10 +32,10 @@ app.get('/meditators', function(req, res) {
 	res.send(meditators); 
 });
 
-app.put('meditators/:id', function(req, res) {
+app.put('/meditators/:id', function(req, res) {
 	// ID for each device to limit one location per device
 	// req will contain latlng
-
+	console.log('request body: ', req.body)
 	res.send('putting meditators'); 
 });
 
