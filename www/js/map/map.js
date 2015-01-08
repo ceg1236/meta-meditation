@@ -1,16 +1,15 @@
 angular.module('tsonga.map', [])
 
-.directive('leafletMap', function() {
+.directive('leafletMap', function(Meditators) {
 	return {
 		restrict:'E',
-		// require: '^ngModel', 
 		scope:{
-      // 'ngModel' : '=', 
 			state: '='
 		},
 		link: function(scope, element, attrs) {
 
 			var circle, currentLat, currentLng;
+      scope.meditators = []; 
 			scope.$watch('state', function(status){
 				console.log('Watching', status);
 
@@ -29,6 +28,13 @@ angular.module('tsonga.map', [])
 				}
 			}, true);
 
+			scope.$watch('meditators', function(newArray, oldArray, scope) {
+				console.log('new:', newArray); 
+				for(var i = 0; i < newArray.length; i++) {
+					L.circle( newArray[i].latlng, 100, {fillColor: 'green', color: 'green'}).addTo(map);
+				}
+			});
+
 			var map = L.map(element[0], {
 				dragable: true,
 				touchZoom: true,
@@ -36,6 +42,13 @@ angular.module('tsonga.map', [])
 				zoom: 12, 
 				center: [37.741399, -122.43782],
 			});
+
+			Meditators.findAll().then(function(res) {
+				console.log(res); 
+
+				scope.meditators = res.data; 
+			});
+
 
 
 			var currentLocation;
