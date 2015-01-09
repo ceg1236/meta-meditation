@@ -1,14 +1,20 @@
 var express = require("express"), 
 	app = express(), 
 	bodyParser = require('body-parser'), 
+	server = require('http').createServer(app), 
+	socketio = require('socket.io')(server, {
+		path: '/socket.io'
+	}),
 	meditators = [
 		{id: '1', latlng: [37.771938, -122.459509]}, 
 		{id: '2', latlng: [37.770182, -122.456301]}
 	];
-// app.set('view engine', 'html'); 
+
+// process.env.DEBUG = '*'; 
+require('./server/socketio')(socketio);
+
 app.use( bodyParser.urlencoded({extended: false}) );
 app.use(function(req, res, next) {
-
 	res.header('Access-Control-Allow-Origin', '*'); 
 	res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, OPTIONS, DELETE'); 
 	res.header('Access-Control-Allow-Headers', 'Content-Type');
@@ -17,7 +23,7 @@ app.use(function(req, res, next) {
 app.use(bodyParser.json()); 
 
 app.get('/', function(req, res) {
-	res.send('index');
+	res.send('<script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>'); 
 });
 
 app.post('/', function(req, res) {
@@ -43,4 +49,4 @@ app.delete('meditators/:id', function(req, res){
 	res.send('deleted meditator');
 }); 
 
-app.listen(8003); 
+server.listen(8003); 
