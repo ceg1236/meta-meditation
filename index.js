@@ -5,6 +5,7 @@ var express = require("express"),
 	socketio = require('socket.io')(server, {
 		path: '/socket.io'
 	}),
+	// TEST DATA
 	meditators = [
 		{id: '1', latlng: [37.771938, -122.459509]}, 
 		{id: '2', latlng: [37.770182, -122.456301]}
@@ -41,6 +42,11 @@ app.get('/meditators', function(req, res) {
 app.put('/meditators/:id', function(req, res) {
 	// ID for each device to limit one location per device
 	// req will contain latlng
+	// socket.emit -- someone is meditating
+	var meditatorID = req.query.id;
+	var locationArray = req.body.latlng;
+	meditators.push({id: meditatorID, latlng: locationArray});
+	socketio.emit('new-meditator', {meditators: meditators});
 	console.log('request body: ', req.body)
 	res.send('putting meditators'); 
 });
