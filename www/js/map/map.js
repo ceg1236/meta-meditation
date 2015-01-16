@@ -1,6 +1,6 @@
 angular.module('tsonga.map', [])
 
-.directive('leafletMap', function(Meditators) {
+.directive('leafletMap', function(Meditators, mySocket) {
 	return {
 		restrict:'E',
 		scope:{

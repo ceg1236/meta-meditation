@@ -2,8 +2,8 @@ var express = require("express"),
 	app = express(), 
 	bodyParser = require('body-parser'), 
 	server = require('http').createServer(app), 
-	socketio = require('socket.io')(server, {
-		path: '/socket.io'
+	io = require('socket.io')(server, {
+		// path: '/socket.io-client'
 	}),
 	// TEST DATA
 	meditators = [
@@ -12,11 +12,12 @@ var express = require("express"),
 	];
 
 // process.env.DEBUG = '*'; 
-require('./server/socketio')(socketio);
+require('./server/socketio')(io);
 
 app.use( bodyParser.urlencoded({extended: false}) );
 app.use(function(req, res, next) {
-	res.header('Access-Control-Allow-Origin', '*'); 
+	res.header('Access-Control-Allow-Credentials', 'true'); 
+	res.header('Access-Control-Allow-Origin', 'http://localhost:8100'); 
 	res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, OPTIONS, DELETE'); 
 	res.header('Access-Control-Allow-Headers', 'Content-Type');
 	next(); 

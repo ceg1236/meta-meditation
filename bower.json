@@ -6,6 +6,7 @@
     "leaflet": "~0.7.3"
   },
   "dependencies": {
-    "angular-socket-io": "~0.7.0"
+    "angular-socket-io": "~0.7.0",
+    "socket.io-client": "~1.2.1"
   }
 }
