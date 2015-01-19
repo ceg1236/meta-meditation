@@ -233,3 +233,22 @@ libc++abi.dylib: terminating with uncaught exception of type NSException
 
   ]
 ]
+2015-01-18 21:52:20.621 meditation[50342:3443877] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/carlgoldberg/Library/Developer/CoreSimulator/Devices/10D939F7-F855-4BF6-BC12-7BBF5E2F12E2/data/Containers/Data/Application/5AC7F52D-21DB-413E-A199-836235300B61/Library/Cookies/Cookies.binarycookies
+2015-01-18 21:52:20.939 meditation[50342:3443877] Apache Cordova native platform version 3.7.0 is starting.
+2015-01-18 21:52:20.940 meditation[50342:3443877] Multi-tasking -> Device: YES, App: YES
+2015-01-18 21:52:20.963 meditation[50342:3443877] Unlimited access to network resources
+2015-01-18 21:52:21.413 meditation[50342:3443877] CDVPlugin class IonicKeyboard (pluginName: keyboard) does not exist.
+2015-01-18 21:52:21.413 meditation[50342:3443877] [CDVTimer][keyboard] 0.124991ms
+2015-01-18 21:52:21.413 meditation[50342:3443877] [CDVTimer][TotalPluginStartup] 0.251055ms
+2015-01-18 21:52:21.908 meditation[50342:3443877] Resetting plugins due to page load.
+2015-01-18 21:52:22.251 meditation[50342:3443877] Finished load of: file:///Users/carlgoldberg/Library/Developer/CoreSimulator/Devices/10D939F7-F855-4BF6-BC12-7BBF5E2F12E2/data/Containers/Bundle/Application/57777661-5171-460E-A418-A26D4D8553AB/meditation.app/www/index.html#/tab/dash
+2015-01-18 21:52:22.652 meditation[50342:3443877] CDVPlugin class CDVDevice (pluginName: Device) does not exist.
+2015-01-18 21:52:22.652 meditation[50342:3443877] ERROR: Plugin 'Device' not found, or is not a CDVPlugin. Check your plugin mapping in config.xml.
+2015-01-18 21:52:22.653 meditation[50342:3443877] -[CDVCommandQueue executePending] [Line 158] FAILED pluginJSON = [
+  "Device1319137242",
+  "Device",
+  "getDeviceInfo",
+  [
+
+  ]
+]

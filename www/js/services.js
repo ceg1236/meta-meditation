@@ -25,8 +25,8 @@ angular.module('starter.services', ['btford.socket-io', 'starter.controllers'])
   }
 
   var meditate = function(mode, latlng){
-    mySocket.emit('session-start'); 
-    return $http.put(Config.url + '/meditators/'+ Config.meditatorID, {latlng: latlng}); 
+    mySocket.emit('session-start', latlng); 
+    // return $http.put(Config.url + '/meditators/'+ Config.meditatorID, {latlng: latlng}); 
   }
 
   var terminate = function(meditatorID, latlng) {

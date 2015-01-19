@@ -2,17 +2,17 @@ var express = require("express"),
 	app = express(), 
 	bodyParser = require('body-parser'), 
 	server = require('http').createServer(app), 
-	io = require('socket.io')(server, {
-		// path: '/socket.io-client'
-	}),
+	io = require('socket.io')(server),
 	// TEST DATA
 	meditators = [
 		{id: '1', latlng: [37.771938, -122.459509]}, 
 		{id: '2', latlng: [37.770182, -122.456301]}
 	];
+var dataStore = {
+	meditators: meditators
+};
 
-// process.env.DEBUG = '*'; 
-require('./server/socketio')(io);
+require('./server/socketio')(io, dataStore);
 
 app.use( bodyParser.urlencoded({extended: false}) );
 app.use(function(req, res, next) {
@@ -37,7 +37,7 @@ app.post('/', function(req, res) {
 // TODO: location-based GET /meditators/at/:lat/:lng
 app.get('/meditators', function(req, res) {
 
-	res.send(meditators); 
+	res.send(dataStore.meditators); 
 });
 
 app.put('/meditators/:id', function(req, res) {
@@ -45,10 +45,11 @@ app.put('/meditators/:id', function(req, res) {
 	// req will contain latlng
 	// socket.emit -- someone is meditating
 	// socket broadcast.emit
+
 	var meditatorID = req.query.id;
 	var locationArray = req.body.latlng;
-	meditators.push({id: meditatorID, latlng: locationArray});
-	console.log('request body: ', req.body);
+	// meditators.push({id: meditatorID, latlng: locationArray});
+	// console.log('request body: ', req.body);
 	res.send('putting meditators'); 
 });
 

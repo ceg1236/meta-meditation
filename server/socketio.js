@@ -13,18 +13,11 @@ function onConnect(socket) {
 }
 
 
-module.exports = function(socketio) {
+module.exports = function(socketio, dataStore) {
 
-	// setInterval(function() {
-	// 	socketio.emit('meditating', {latlng: 123});
-	// 	console.log('socketio emittin'); 
-	// }, 2000); 
 
 	console.log('socketio running'); 
 	socketio.on('connection', function(socket) {
-		// socket.address = socket.handshake.address !== null ?
-		// 				socket.handshake.address.address + ':' + socket.handshake.address.port :
-		// 				process.env.DOMAIN;
 
 		socket.connectedAt = new Date(); 
 
@@ -33,17 +26,25 @@ module.exports = function(socketio) {
 			console.info('DISCONNECTED'); 
 		});
 
-		socket.on('session-start', function() {
+		socket.on('session-start', function(data) {
+
+		  dataStore.meditators.push({id: socket.id, latlng: data});
 			socket.broadcast.emit('session-start'); 
-			
-			console.log('session start', socket.id); 
+
+			console.log('session start', socket.id);
+			console.log('session data ', data);  
 		});
 
 		socket.on('session-end', function() {
 			// Delete from redis
 			// Tell everybody -- ie remove from map
+			dataStore.meditators = dataStore.meditators.filter(function(item) {
+				return item.id !== socket.id; 
+			});
 			socket.broadcast.emit('session-end'); 
+
 			console.log('session end ', socket.id); 
+			console.log('meditators after session end ', dataStore.meditators); 
 		});
 
 		onConnect(socket);
