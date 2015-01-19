@@ -31,18 +31,17 @@ angular.module('tsonga.map', [])
 			}, true);
 			var otherCircles = [];
 			scope.$watch('meditators', function(newArray, oldArray, scope) {
-				// console.log('meditators ' , scope.meditators); 
-				// console.log('newArray ', newArray); 
-				// console.log('oldArray ', oldArray); 
-				// console.log('scope ', scope); 
 
 				// remove all other circles from the map
 				for(var j = 0; j < otherCircles.length; j++){
 					map.removeLayer(otherCircles[j]);
 				}
-				
+
         // re add all the current ones. keep track of them
 				for(var i = 0; i < newArray.length; i++) {
+					if (newArray[i].id === mySocket.id) {
+						continue; 
+					}
 					otherCircles.push(L.circle( newArray[i].latlng, 100, {fillColor: 'green', color: 'green'}).addTo(map));
 				}
 			});

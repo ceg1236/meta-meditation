@@ -24,33 +24,10 @@ app.use(function(req, res, next) {
 });
 app.use(bodyParser.json()); 
 
-app.get('/', function(req, res) {
-	res.send('<script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>'); 
-});
-
-app.post('/', function(req, res) {
-	console.log('request body: ', req.body); 
-	res.redirect('/');
-});
-
 // Getting all meditators for now
 // TODO: location-based GET /meditators/at/:lat/:lng
 app.get('/meditators', function(req, res) {
-
 	res.send(dataStore.meditators); 
-});
-
-app.put('/meditators/:id', function(req, res) {
-	// ID for each device to limit one location per device
-	// req will contain latlng
-	// socket.emit -- someone is meditating
-	// socket broadcast.emit
-
-	var meditatorID = req.query.id;
-	var locationArray = req.body.latlng;
-	// meditators.push({id: meditatorID, latlng: locationArray});
-	// console.log('request body: ', req.body);
-	res.send('putting meditators'); 
 });
 
 server.listen(8003); 

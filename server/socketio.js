@@ -10,6 +10,7 @@ function onConnect(socket) {
 	socket.on('info', function(data) {
 		console.info('INFO', socket.address);
 	});
+	socket.emit('connected', socket.id); 
 }
 
 

@@ -8,12 +8,12 @@ angular.module('starter.services', ['btford.socket-io', 'starter.controllers'])
 })
 
 .factory('mySocket', function(socketFactory, Config) {
-  var ioSocket = io(Config.url, {
-    // path: '/socket.io'
-  }); 
-
+  var ioSocket = io(Config.url); 
   mySocket = socketFactory({
     ioSocket: ioSocket
+  });
+  mySocket.on('connected', function(data) {
+    mySocket.id = data; // Decorating socket with id
   });
   return mySocket; 
 })
@@ -24,14 +24,12 @@ angular.module('starter.services', ['btford.socket-io', 'starter.controllers'])
     return $http.get(Config.url + '/meditators'); 
   }
 
-  var meditate = function(mode, latlng){
+  var meditate = function(mode, latlng) {
     mySocket.emit('session-start', latlng); 
-    // return $http.put(Config.url + '/meditators/'+ Config.meditatorID, {latlng: latlng}); 
   }
 
   var terminate = function(meditatorID, latlng) {
     mySocket.emit('session-end'); 
-    // return $http.delete(Config.url + '/meditators/' + Config.meditatorID, {latlng: latlng}); 
   }
 
   return {
