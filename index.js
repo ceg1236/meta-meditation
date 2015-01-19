@@ -44,16 +44,12 @@ app.put('/meditators/:id', function(req, res) {
 	// ID for each device to limit one location per device
 	// req will contain latlng
 	// socket.emit -- someone is meditating
+	// socket broadcast.emit
 	var meditatorID = req.query.id;
 	var locationArray = req.body.latlng;
 	meditators.push({id: meditatorID, latlng: locationArray});
-	socketio.emit('new-meditator', {meditators: meditators});
-	console.log('request body: ', req.body)
+	console.log('request body: ', req.body);
 	res.send('putting meditators'); 
 });
-
-app.delete('meditators/:id', function(req, res){
-	res.send('deleted meditator');
-}); 
 
 server.listen(8003); 

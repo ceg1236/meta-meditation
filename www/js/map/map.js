@@ -26,10 +26,15 @@ angular.module('tsonga.map', [])
 				} else {
 					//remove the circle
 					map.removeLayer(circle); 
+					Meditators.terminate(scope.meditators.id, [currentLat, currentLng]); 
 				}
 			}, true);
 
 			scope.$watch('meditators', function(newArray, oldArray, scope) {
+				// console.log('meditators ' , scope.meditators); 
+				// console.log('newArray ', newArray); 
+				// console.log('oldArray ', oldArray); 
+				// console.log('scope ', scope); 
 				for(var i = 0; i < newArray.length; i++) {
 					L.circle( newArray[i].latlng, 100, {fillColor: 'green', color: 'green'}).addTo(map);
 				}
@@ -43,13 +48,25 @@ angular.module('tsonga.map', [])
 				center: [37.741399, -122.43782],
 			});
 
-			Meditators.findAll().then(function(res) {
-				console.log(res); 
+			var refresh = function() {
+				Meditators.findAll().then(function(res) {
+					console.log(res); 
 
-				scope.meditators = res.data; 
+					scope.meditators = res.data; 
+				});
+			};
+
+			refresh();
+
+			mySocket.on('session-end', function(data) {
+				refresh(); 
+				console.log('someone has ended their session ', data);
+			}); 
+
+			mySocket.on('session-start', function(data) {
+				refresh(); 
+				console.log('someone started a session ', data);
 			});
-
-
 
 			var currentLocation;
 			function onLocationFound(e) {
@@ -76,6 +93,5 @@ angular.module('tsonga.map', [])
 			}).addTo(map);
 			map.locate( {setView: true, zoom: 12, watch: true });
 		}
-
 	}
 });

@@ -1,6 +1,8 @@
 'use strict';
 
 function onDisconnect(socket) {
+	// Remove meditator from map
+	socket.broadcast.emit('session-end'); 
 	console.log('onDisconnect fn'); 
 }
 
@@ -29,6 +31,19 @@ module.exports = function(socketio) {
 		socket.on('disconnect', function() {
 			onDisconnect(socket);
 			console.info('DISCONNECTED'); 
+		});
+
+		socket.on('session-start', function() {
+			socket.broadcast.emit('session-start'); 
+			
+			console.log('session start', socket.id); 
+		});
+
+		socket.on('session-end', function() {
+			// Delete from redis
+			// Tell everybody -- ie remove from map
+			socket.broadcast.emit('session-end'); 
+			console.log('session end ', socket.id); 
 		});
 
 		onConnect(socket);
