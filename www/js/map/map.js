@@ -23,9 +23,10 @@ angular.module('tsonga.map', [])
 					
 					circle.addTo(map);
 					Meditators.meditate(status.mode, [currentLat, currentLng]); 
-				} else {
-					//remove the circle
-					map.removeLayer(circle); 
+				} else {	//remove the circle
+					if (circle) {
+						map.removeLayer(circle); 
+					}
 					Meditators.terminate(scope.meditators.id, [currentLat, currentLng]); 
 				}
 			}, true);
