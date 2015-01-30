@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-.controller('DashCtrl', ['$scope', '$timeout', function($scope, $timeout, Meditators) {
+.controller('DashCtrl', ['$scope', '$timeout', function($scope, $timeout, Meditators, $ionicScrollDelegate) {
 
   $scope.state = {}; 
   $scope.state.meditating = false; 

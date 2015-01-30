@@ -3,9 +3,12 @@
   <div data-tap-disabled="true" drag-content="false" class="mapHeight">
     <leaflet-map state="state" style="z-index:10;"></leaflet-map>
   <div class="buttons">
-    <button on-tap="movingTap()" ng-hide="showTimer" id="moving">Moving</button><button on-tap="sittingTap()" ng-hide="showTimer" id="sitting">Sitting</button>
-    <input type="time" placeholder="HH:mm:ss" min="00:00:00" max="10:00:00" ng-model="endTime.value" ng-show="showTimer" ng-hide="state.meditating"><input type="submit" ng-hide="state.meditating" on-tap="startTimer()" id="start">
 
+<!-- Clean up ng-show/hide/states -->
+
+    <button on-tap="movingTap()" ng-hide="showTimer" id="moving">Moving</button><button on-tap="sittingTap()" ng-hide="showTimer" id="sitting">Sitting</button>
+ <!--    <input type="time" placeholder="HH:mm:ss" min="00:00:00" max="10:00:00" ng-model="endTime.value" ng-show="showTimer" ng-hide="state.meditating"><input type="submit" ng-hide="state.meditating" on-tap="startTimer()" id="start"> -->
+    <timer ng-show='showTimer' duration="duration.value" ng-hide="state.meditating"></timer><input type="submit" ng-hide="state.meditating" on-tap="startTimer()" id="start">
     <button on-tap="endSession()" ng-show="state.meditating" id="end">End Session</button>
   </div>
   </div>
