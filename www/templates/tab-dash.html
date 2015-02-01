@@ -1,18 +1,15 @@
-<ion-view view-title="Dashboard">
+<ion-view view-title="MetaMeditation">
   <ion-content has-header="true" padding="false">
   <div data-tap-disabled="true" drag-content="false" class="mapHeight">
     <leaflet-map state="state" style="z-index:10;"></leaflet-map>
   <div class="buttons">
 
-<!-- TODO: Clean up ng-show/hide/states -->
-
     <button class="button button-assertive"on-tap="movingTap()" ng-hide="showTimer" id="moving">Moving</button><button class="button button-calm" on-tap="sittingTap()" ng-hide="showTimer" id="sitting">Sitting</button>
-
-    <timer interval="1000" countdown="20" >{{countdown}}</timer>
+     
     <timer-select ng-show='showTimer' duration="duration.value" ng-hide="state.meditating"></timer-select>
-    <input type="submit" ng-hide="state.meditating" on-tap="startTimer()" on-tap="addCDSeconds(10)" id="start">
-
-    <button on-tap="endSession()" ng-show="state.meditating" id="end">End Session</button>
+    <input class="button button-stable" type="submit" ng-hide="state.meditating" on-tap="startTimer()" id="start">
+    <timer interval="1000" autostart="false" >Remaining: {{countdown}}</timer>
+    <button class="button button-dark" on-tap="endSession()" ng-show="state.meditating" id="end">End Session</button>
   </div>
   </div>
   </ion-content>

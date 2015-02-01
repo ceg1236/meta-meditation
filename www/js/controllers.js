@@ -5,15 +5,17 @@ angular.module('starter.controllers', [])
   $scope.state = {}; 
   $scope.state.meditating = false; 
   $scope.state.mode = null;
-  $scope.duration = {value: null}; 
+  $scope.duration = {};
+  $scope.duration.value = 10;
 
   $scope.startTimer = function() {
     // pop up a timer selector
     // return time selection
 
     $scope.state.meditating = true; 
-    // $scope.duration.value = 
-    
+    console.log($scope.duration.value);
+    $scope.$broadcast('timer-set-countdown', $scope.duration.value);
+    $scope.$broadcast('timer-start');
     $scope.state.countDown = true;  
   }
 
