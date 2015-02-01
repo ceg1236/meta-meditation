@@ -11,7 +11,6 @@ angular.module('tsonga.map', [])
 			var circle, currentLat, currentLng;
       scope.meditators = []; 
 			scope.$watch('state', function(status){
-				console.log('Watching', status);
 
 				if (status.meditating) {
 
@@ -57,8 +56,6 @@ angular.module('tsonga.map', [])
 
 			var refresh = function() {
 				Meditators.findAll().then(function(res) {
-					console.log(res); 
-
 					scope.meditators = res.data; 
 				});
 			};
@@ -87,9 +84,6 @@ angular.module('tsonga.map', [])
 			    	currentLocation = L.marker(e.latlng);
 			    	currentLocation.addTo(map);
 			    }
-			    	
-			    console.log('latLng ', e.latlng); 
-
 			}
 
 			map.on('locationfound', onLocationFound);
