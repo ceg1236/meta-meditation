@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-.controller('DashCtrl', ['$scope', '$timeout', function($scope, $timeout, Meditators, $ionicScrollDelegate) {
+.controller('DashCtrl', ['$scope', '$timeout', function($scope, $timeout, Meditators) {
 
   $scope.state = {}; 
   $scope.state.meditating = false; 
@@ -13,7 +13,6 @@ angular.module('starter.controllers', [])
     // return time selection
 
     $scope.state.meditating = true; 
-    console.log($scope.duration.value);
     $scope.$broadcast('timer-set-countdown', $scope.duration.value);
     $scope.$broadcast('timer-start');
     $scope.state.countDown = true;  
