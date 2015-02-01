@@ -36,6 +36,7 @@ angular.module('starter.controllers', [])
 
     $scope.state.meditating = false; 
     $scope.showTimer = false; 
+    $scope.$digest();
   }
 }]);
 

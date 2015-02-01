@@ -8,7 +8,7 @@
      
     <timer-select ng-show='showTimer' duration="duration.value" ng-hide="state.meditating"></timer-select>
     <input class="button button-stable" type="submit" ng-hide="state.meditating" on-tap="startTimer()" id="start">
-    <timer interval="1000" autostart="false" >Remaining: {{countdown}}</timer>
+    <timer interval="1000" autostart="false" finish-callback="endSession()">Remaining: {{countdown}}</timer>
     <button class="button button-dark" on-tap="endSession()" ng-show="state.meditating" id="end">End Session</button>
   </div>
   </div>
