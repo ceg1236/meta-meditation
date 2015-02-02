@@ -14,9 +14,11 @@ describe('user', function () {
 
   it('can store user in redis if provided an ID', function(done){
     user.save().then(function(data){
+      console.log('data', data);
       expect(data.name).to.equal('Jose');
 
       client.get('user:10', function(err, data){
+        console.log('data2', data);
 
         expect(JSON.parse(data).name).to.equal('Jose');
         done();
