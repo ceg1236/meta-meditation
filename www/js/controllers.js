@@ -5,20 +5,17 @@ angular.module('starter.controllers', [])
   $scope.state = {}; 
   $scope.state.meditating = false; 
   $scope.state.mode = null;
-  $scope.endTime = {value: undefined}; 
+  $scope.duration = {};
+  $scope.duration.value = 10;
 
   $scope.startTimer = function() {
-    var hours = $scope.endTime.value.getHours();
-    var minutes = $scope.endTime.value.getMinutes() + hours*60;
-    var seconds = $scope.endTime.value.getSeconds() + minutes*60;
-    $scope.state.endTime = Date.now() + seconds*1000; 
     // pop up a timer selector
     // return time selection
-    $scope.state.meditating = true; 
 
-    $scope.state.startTime = Date.now();
- 
-    console.log($scope.state.endTime); 
+    $scope.state.meditating = true; 
+    $scope.$broadcast('timer-set-countdown', $scope.duration.value);
+    $scope.$broadcast('timer-start');
+    $scope.state.countDown = true;  
   }
 
   $scope.movingTap = function() {
@@ -38,6 +35,7 @@ angular.module('starter.controllers', [])
 
     $scope.state.meditating = false; 
     $scope.showTimer = false; 
+    $scope.$digest();
   }
 }]);
 

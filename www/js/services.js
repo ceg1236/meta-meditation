@@ -3,7 +3,7 @@ angular.module('starter.services', ['btford.socket-io', 'starter.controllers'])
 .factory('Config', function() {
   return {
     url: 'http://localhost:8003', 
-    meditatorID: 123   // TODO: retrieve unique ID from device
+    // meditatorID: 123   // TODO: retrieve unique ID from device
   }
 })
 

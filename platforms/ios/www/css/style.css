@@ -13,6 +13,18 @@ leaflet-map {
 	height: 85%;
 }
 
+timer {
+	width:100%;
+}
+
+.tabs .tab-item .icon.meditator {
+	height:100%;
+	background-repeat: no-repeat;
+	background-position: 50%;
+	background-color: beige;
+	background-image: url('../assets/Meditation-icon.png'); 
+}
+
 .scroll {
 	height: 100%;
 }
@@ -38,4 +50,5 @@ leaflet-map {
 	width: 100%;
 	height: 30%;
 }
+
 

@@ -11,7 +11,6 @@ angular.module('tsonga.map', [])
 			var circle, currentLat, currentLng;
       scope.meditators = []; 
 			scope.$watch('state', function(status){
-				console.log('Watching', status);
 
 				if (status.meditating) {
 
@@ -23,9 +22,10 @@ angular.module('tsonga.map', [])
 					
 					circle.addTo(map);
 					Meditators.meditate(status.mode, [currentLat, currentLng]); 
-				} else {
-					//remove the circle
-					map.removeLayer(circle); 
+				} else {	//remove the circle
+					if (circle) {
+						map.removeLayer(circle); 
+					}
 					Meditators.terminate(scope.meditators.id, [currentLat, currentLng]); 
 				}
 			}, true);
@@ -56,8 +56,6 @@ angular.module('tsonga.map', [])
 
 			var refresh = function() {
 				Meditators.findAll().then(function(res) {
-					console.log(res); 
-
 					scope.meditators = res.data; 
 				});
 			};
@@ -86,9 +84,6 @@ angular.module('tsonga.map', [])
 			    	currentLocation = L.marker(e.latlng);
 			    	currentLocation.addTo(map);
 			    }
-			    	
-			    console.log('latLng ', e.latlng); 
-
 			}
 
 			map.on('locationfound', onLocationFound);
