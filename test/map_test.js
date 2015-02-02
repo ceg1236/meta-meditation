@@ -1,6 +1,7 @@
-describe('Meta-meditation', function() {
+describe('Meta-meditation', function () {
 
-	it('should draw map', function() {
+  it('should draw map', function () {
 
-	});
+
+  });
 }); 
