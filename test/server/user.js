@@ -43,10 +43,13 @@ describe('user', function () {
     });
   });
 
-  xit('should find user in redis', function (done) {
-    client.set('users:41','{name:fred}',function (err, reply) {
-      console.log(reply);
-      console.log(err);
+  it('should find user in redis', function (done) {
+
+    client.set('user:1041',JSON.stringify({name:'Fred'}),function (err, reply) {
+      User.findById(1041).then(function(data){
+        expect(data.name).to.equal('Fred');
+        done();
+      });
 
     })
   });
