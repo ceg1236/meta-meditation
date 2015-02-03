@@ -7,11 +7,13 @@ var User = function (obj) {
 };
 
 var handlePromise = function(deferred, data) {
+	console.log('out', deferred);
 	return function(error, value) {
+		console.log('in', value);
 		if (error) {
 			deferred.reject(new Error(error));
 		} else {
-			deferred.resolve(data || value);
+			deferred.resolve(data || JSON.parse(value));
 		}
 	}
 }
@@ -35,6 +37,12 @@ User.prototype.save = function() {
 	} else { // ID Defined
 		client.set('user:'+self.id, JSON.stringify(self), handlePromise(deferred, self));
 	}
+	return deferred.promise;
+};
+
+User.findById = function(id) {
+	var deferred = q.defer();
+	client.get('user:'+id, handlePromise(deferred));
 	return deferred.promise;
 };
 

@@ -32,9 +32,8 @@ describe('user', function () {
       expect(data.id).not.to.be.undefined();
       expect(data.name).to.equal('Carl');
 
-      console.log('saved', data);
       client.get('user:'+data.id, function(err, data){
-        console.log('data', data);
+
         expect(JSON.parse(data).name).to.equal('Carl');
         done();
       });
