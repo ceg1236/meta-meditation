@@ -7,9 +7,7 @@ var User = function (obj) {
 };
 
 var handlePromise = function(deferred, data) {
-	console.log('out', deferred);
 	return function(error, value) {
-		console.log('in', value);
 		if (error) {
 			deferred.reject(new Error(error));
 		} else {

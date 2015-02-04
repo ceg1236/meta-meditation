@@ -3,7 +3,7 @@ var express = require("express"),
     bodyParser = require('body-parser'),
     server = require('http').createServer(app),
     io = require('socket.io')(server),
-
+    User = require('./server/model/user.js'),
 // TEST DATA
     meditators = [
         {id: '1', latlng: [37.771938, -122.459509]},
@@ -30,6 +30,15 @@ app.use(bodyParser.json());
 // TODO: location-based GET /meditators/at/:lat/:lng
 app.get('/meditators', function (req, res) {
     res.send(dataStore.meditators);
+});
+
+app.post('/api/handshake', function(req, res) {
+	console.log('POST');
+	var user = new User({name: req.body.name})
+	user.save().then(function(value) {
+		console.log('user', value); 
+		res.status(200).send(value);
+	})
 });
 
 server.listen(8003);
