@@ -3,6 +3,8 @@ var client = require('redis').createClient();
 var User = require('../../server/model/user');
 var app = require('../../index');
 var request = require('supertest');
+var io = require('socket.io-client');
+var config = require('../../server/config');
 
 describe('user', function () {
 
@@ -91,6 +93,60 @@ describe('user', function () {
             done(err);
           });
       });
+
+
+    });
+
+    xdescribe('POST /api/sessions', function(){
+
+      xit('should set session to true', function(done){
+        request(app)
+          .post('/api/sessions/')
+          .send({id: user.id})
+          .expect(200)
+          .end(function(err, data){
+            if(err){ done(err); return;}
+            // Should be stored in sessions:userid
+            client.get('sessions:'+user.id,function(err, data){
+              if(err){ done(err); return;}
+              expect(data).not.to.be.null();
+              done();
+            });
+          });
+      });
+
+      xit('should not work if id is not a user', function(done){
+        request(app)
+          .post('/api/sessions/')
+          .send({id: 9000})
+          .expect(400,done);
+      });
+
+    });
+
+    xdescribe('Socket events', function(){
+      var client1;
+      var client2;
+      var options ={
+        'force new connection': true
+      };
+      beforeEach(function(done){
+        client1 = io.connect('http://localhost:'+config.port, options);
+        client1.on('connect',function(){
+          client2 = io.connect('http://localhost:'+config.port, options);
+          client2.on('connect',function(){
+            done();
+          });
+        });
+      });
+
+      it('when emitting session-start without an id, should not notify the rest', function(done){
+        client2.on('session-start',function(){
+          done("should not broadcast if id was not on the emit");
+        });
+        client1.emit('session-start',{name:'Jose'});
+      });
+
 
     });
 
