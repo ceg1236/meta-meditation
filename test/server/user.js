@@ -69,7 +69,8 @@ describe('user', function () {
           .post('/api/handshake')
           .send({name: "Jeff"})
           .expect(200)
-          .end(function(err,data){
+          .end(function(err,resp){
+            var data = resp.body;
             expect(data.id).not.to.be.undefined();
             expect(data.name).to.equal("Jeff");
             done(err);
@@ -83,7 +84,8 @@ describe('user', function () {
           .post('/api/handshake')
           .send({id: user.id}) // Phone should send just the ID
           .expect(200)
-          .end(function(err,data){
+          .end(function(err,resp){
+            var data = resp.body;
             expect(data.id).not.to.be.undefined();
             expect(data.name).to.equal("Jose");// This is the user we created at the star
             done(err);
