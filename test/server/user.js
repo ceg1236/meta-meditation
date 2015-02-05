@@ -55,6 +55,46 @@ describe('user', function () {
     })
   });
 
+  it('should create User object on find', function(done){
+
+    User.findById(user.id).then(function(data){
+      expect(data).to.be.an.instanceof(User);
+      done();
+    }).catch(done);
+
+  });
+
+  it('should set user id after saving', function(done){
+    var secondUser = new User({name:'Nicole'});
+
+    secondUser.save().then(function(data){
+      expect(secondUser.id).to.be.above(1);
+      done();
+    })
+
+  });
+
+  it('should start sessions', function(done){
+    user.startSession().then(function(){
+      client.get('sessions:'+user.id, function(err, reply){
+        expect(reply).not.to.be.null();
+        done();
+      });
+    });
+  });
+
+  it('should stop sessions', function(done){
+    user.stopSession().then(function(){
+      client.get('sessions:'+user.id, function(err, reply){
+        expect(reply).to.be.null();
+        done();
+      });
+    });
+  });
+
+
+
+
   describe('user integration', function(){
 
     describe('POST /api/handshake', function(){
@@ -97,14 +137,14 @@ describe('user', function () {
 
     });
 
-    xdescribe('POST /api/sessions', function(){
+    describe('POST /api/sessions', function(){
 
-      xit('should set session to true', function(done){
+      it('should set session to true', function(done){
         request(app)
           .post('/api/sessions/')
           .send({id: user.id})
           .expect(200)
-          .end(function(err, data){
+          .end(function(err, resp){
             if(err){ done(err); return;}
             // Should be stored in sessions:userid
             client.get('sessions:'+user.id,function(err, data){
@@ -115,7 +155,7 @@ describe('user', function () {
           });
       });
 
-      xit('should not work if id is not a user', function(done){
+      it('should not work if id is not a user', function(done){
         request(app)
           .post('/api/sessions/')
           .send({id: 9000})
