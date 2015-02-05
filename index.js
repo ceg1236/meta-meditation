@@ -34,11 +34,16 @@ app.get('/meditators', function (req, res) {
 
 app.post('/api/handshake', function(req, res) {
 	console.log('POST');
-	var user = new User({name: req.body.name})
-	user.save().then(function(value) {
-		console.log('user', value); 
-		res.status(200).send(value);
-	})
+	var user = new User({name: req.body.name, id: req.body.id})
+	if (user.id) {
+		User.findById(user.id).then(function(exisitingUser) {
+			res.status(200).send(exisitingUser);
+		});
+	} else {
+		user.save().then(function(value) {
+			res.status(200).send(value);
+		});
+	}
 });
 
 server.listen(8003);

@@ -57,7 +57,7 @@ describe('user', function () {
 
     describe('POST /api/handshake', function(){
 
-      xit('should have the route', function(done){
+      it('should have the route', function(done){
         request(app)
           .post('/api/handshake')
           .expect(200,done)
@@ -93,9 +93,6 @@ describe('user', function () {
       });
 
     });
-
-
-
   });
 });
 
