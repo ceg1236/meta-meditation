@@ -58,6 +58,7 @@ describe('user', function () {
   it('should create User object on find', function(done){
 
     User.findById(user.id).then(function(data){
+      console.log('data', data.prototype, data instanceof User);
       expect(data).to.be.an.instanceof(User);
       done();
     }).catch(done);
@@ -77,6 +78,7 @@ describe('user', function () {
   it('should start sessions', function(done){
     user.startSession().then(function(){
       client.get('sessions:'+user.id, function(err, reply){
+        console.log(reply);
         expect(reply).not.to.be.null();
         done();
       });

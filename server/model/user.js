@@ -4,6 +4,7 @@ var q = require('q');
 var User = function (obj) {
 	this.id = obj.id;
 	this.name = obj.name;
+	// this.session = false;
 };
 
 var handlePromise = function(deferred, data) {
@@ -33,14 +34,54 @@ User.prototype.save = function() {
 			}); 
 		});
 	} else { // ID Defined
-		client.set('user:'+self.id, JSON.stringify(self), handlePromise(deferred, self));
+		client.set('user:'+self.id, JSON.stringify(self), function(error, value) {
+			if (error) {
+			deferred.reject(new Error(error));
+			} else {
+				deferred.resolve(self);
+			}
+		});
 	}
 	return deferred.promise;
 };
 
+User.prototype.startSession = function() {
+	var deferred = q.defer();
+	var self = this;
+
+	client.set('sessions:'+self.id, true, function(err, val) {
+		if (err) {
+			deferred.reject(new Error(err));
+		} else {
+			deferred.resolve(val);
+		}
+	});
+	return deferred.promise;
+}
+
+User.prototype.stopSession = function() {
+	var deferred = q.defer();
+	var self = this;
+
+	client.del('sessions:'+self.id, function(err, val) {
+		if (err) {
+			deferred.reject(new Error(err));
+		} else {
+			deferred.resolve(val);
+		}
+	});
+	return deferred.promise;
+}
+
 User.findById = function(id) {
 	var deferred = q.defer();
-	client.get('user:'+id, handlePromise(deferred));
+	client.get('user:'+id, function(error, value) {
+		if (error) {
+			deferred.reject(new Error(error));
+		} else {
+			deferred.resolve( value === null ? null : new User(JSON.parse(value)) );
+		}
+	});
 	return deferred.promise;
 };
 

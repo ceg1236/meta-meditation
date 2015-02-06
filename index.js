@@ -46,6 +46,19 @@ app.post('/api/handshake', function(req, res) {
 	}
 });
 
+app.post('/api/sessions/', function(req, res) {
+	User.findById(req.body.id)
+	.then(function(user) {
+		if (user === null) {
+			res.sendStatus(400);
+		} else {
+			user.startSession().then(function(session) {
+				res.status(200).send(session);
+			});
+		}
+	});
+});
+
 server.listen(8003);
 
 module.exports = app;
