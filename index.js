@@ -33,7 +33,7 @@ app.get('/meditators', function (req, res) {
 });
 
 app.post('/api/handshake', function(req, res) {
-	console.log('POST');
+
 	var user = new User({name: req.body.name, id: req.body.id})
 	if (user.id) {
 		User.findById(user.id).then(function(exisitingUser) {
@@ -56,6 +56,15 @@ app.post('/api/sessions/', function(req, res) {
 				res.status(200).send(session);
 			});
 		}
+	});
+});
+
+app.delete('/api/sessions/:id', function(req, res) {
+	User.findById(req.query.id)
+	.then(function(user) {
+		user.stopSession().then(function(session) {
+			res.status(200).send('Namaste');
+		});
 	});
 });
 
