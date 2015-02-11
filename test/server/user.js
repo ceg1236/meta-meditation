@@ -37,6 +37,7 @@ describe('user', function () {
       client.get('user:'+data.id, function(err, data){
 
         expect(JSON.parse(data).name).to.equal('Carl');
+        expect(JSON.parse(data).id).not.to.be.undefined();
         done();
       });
     }).catch(function(err){
@@ -46,7 +47,7 @@ describe('user', function () {
 
   it('should find user in redis', function (done) {
 
-    client.set('user:1041',JSON.stringify({name:'Fred'}),function (err, reply) {
+    client.set('user:1041',JSON.stringify({id:1041, name:'Fred'}),function (err, reply) {
       User.findById(1041).then(function(data){
         expect(data.name).to.equal('Fred');
         done();
@@ -58,7 +59,6 @@ describe('user', function () {
   it('should create User object on find', function(done){
 
     User.findById(user.id).then(function(data){
-      console.log('data', data.prototype, data instanceof User);
       expect(data).to.be.an.instanceof(User);
       done();
     }).catch(done);
@@ -78,7 +78,6 @@ describe('user', function () {
   it('should start sessions', function(done){
     user.startSession().then(function(){
       client.get('sessions:'+user.id, function(err, reply){
-        console.log(reply);
         expect(reply).not.to.be.null();
         done();
       });
@@ -164,6 +163,32 @@ describe('user', function () {
           .expect(400,done);
       });
 
+    });
+
+    describe('DELETE /api/sessions/:id', function() {
+
+      beforeEach(function(done) {
+        user.startSession()
+        .then(function() {
+          done(); 
+        });  
+      })
+
+      it('should stop user session', function(done) {
+        request(app)
+          .delete('/api/sessions/' + user.id)
+          .expect(200)
+          .end(function(err, res) {
+            if (err) {
+              done(err);
+            }
+            expect(res.body.message).to.equal('Namaste');
+            client.get('sessions:'+user.id, function(err, reply) {
+              expect(reply).to.be.null();
+              done();
+            });
+          });
+      });
     });
 
     xdescribe('Socket events', function(){
