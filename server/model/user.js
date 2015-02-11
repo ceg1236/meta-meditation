@@ -75,6 +75,10 @@ User.prototype.stopSession = function() {
 
 User.findById = function(id) {
 	var deferred = q.defer();
+	if(id === undefined){
+		deferred.reject(new Error("Please provide an id"));
+		return;
+	}
 	client.get('user:'+id, function(error, value) {
 		if (error) {
 			deferred.reject(new Error(error));

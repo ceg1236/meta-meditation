@@ -28,6 +28,7 @@ app.use(bodyParser.json());
 
 // Getting all meditators for now
 // TODO: location-based GET /meditators/at/:lat/:lng
+
 app.get('/meditators', function (req, res) {
     res.send(dataStore.meditators);
 });
@@ -60,10 +61,10 @@ app.post('/api/sessions/', function(req, res) {
 });
 
 app.delete('/api/sessions/:id', function(req, res) {
-	User.findById(req.query.id)
+	User.findById(req.params.id)
 	.then(function(user) {
 		user.stopSession().then(function(session) {
-			res.status(200).send('Namaste');
+			res.status(200).send({'message':'Namaste'});
 		});
 	});
 });
