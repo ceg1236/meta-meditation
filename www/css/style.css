@@ -13,8 +13,18 @@ leaflet-map {
 	height: 85%;
 }
 
+select{
+	width:100%;
+	text-indent: 48%;
+}
+
 timer {
 	width:100%;
+	text-align: center;
+}
+
+timer .span {
+	display: inline-block;
 }
 
 .tabs .tab-item .icon.meditator {
@@ -31,6 +41,7 @@ timer {
 
 .buttons {
 	height: 50%;
+	text-align: center;
 }
 
 #moving {
