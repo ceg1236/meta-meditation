@@ -3,9 +3,26 @@ angular.module('starter.services', ['btford.socket-io', 'starter.controllers'])
 .factory('Config', function() {
   return {
     url: 'http://localhost:8003', 
-    // meditatorID: 123   // TODO: retrieve unique ID from device
+
   }
 })
+
+.factory('$localStorage', ['$window', function($window) {
+  return {
+    set: function(key, value) {
+      $window.localStorage[key] = value;
+    },
+    get: function(key, defaultValue) {
+      return $window.localStorage[key] || defaultValue;
+    },
+    setObject: function(key, value) {
+      $window.localStorage[key] = JSON.stringify(value);
+    },
+    getObject: function(key) {
+      return JSON.parse($window.localStorage[key] || '{}');
+    }
+  }
+}])
 
 .factory('mySocket', function(socketFactory, Config) {
   var ioSocket = io(Config.url); 
@@ -18,24 +35,45 @@ angular.module('starter.services', ['btford.socket-io', 'starter.controllers'])
   return mySocket; 
 })
 
-.factory('Meditators', function($http, Config, mySocket) {
-  
+.factory('Meditators', function($http, Config, mySocket, $q, $localStorage) {
+  $localStorage.set('user', $localStorage.get('user') || "{}");
+  var user = $localStorage.getObject('user');
+  var promise = $http.post(Config.url + '/api/handshake', user)
+    .then(function(resp) {
+      if (resp.data.id) {
+        $localStorage.setObject('user', resp.data);
+      }
+    });
+  // write a functional-like function that allows us to wrap 
+  // these methods and run them only after the handshake promise is resolved.
+  // this will allow us to reuse them and add the handshake pre-requirement without modifying them! Saweeet!.
+
+  var afterHandshake = function(fn) {
+    return function() {
+      var args = arguments;
+      var self = this;
+      return promise.then(function(resp){
+        return fn.apply(self, args);
+      });
+    }
+  }
+
   var findAll = function() {
     return $http.get(Config.url + '/meditators'); 
   }
 
   var meditate = function(mode, latlng) {
-    mySocket.emit('session-start', latlng); 
+    return $http.post(Config.url + '/api/sessions')
   }
 
   var terminate = function(meditatorID, latlng) {
-    mySocket.emit('session-end'); 
+    return $http.delete(Config.url + '/api/sessions' + meditatorID)
   }
 
   return {
-    findAll: findAll, 
-    meditate: meditate,
-    terminate: terminate
+    findAll: afterHandshake(findAll), 
+    meditate: afterHandshake(meditate),
+    terminate: afterHandshake(terminate)
   }
 });
 
