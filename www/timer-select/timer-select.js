@@ -11,6 +11,11 @@ angular.module('timer-select', [])
 		link: function(scope, element, attributes) {
 			console.log('scope in the timer link', scope); 
 
+			scope.timeOptions = [];
+			for(var i = 0; i <= 60; i++) {
+				scope.timeOptions.push(i);
+			}
+
 			// Move some ctrl timer logic here
 			// Show countdown of timer 
 			// On completion, end session, revert to original state
