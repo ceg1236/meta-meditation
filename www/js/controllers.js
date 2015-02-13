@@ -13,6 +13,7 @@ angular.module('starter.controllers', [])
     // return time selection
 
     $scope.state.meditating = true; 
+    $scope.state.duration = $scope.duration.value; // copy the duration in the state
     $scope.$broadcast('timer-set-countdown', $scope.duration.value);
     $scope.$broadcast('timer-start');
     $scope.state.countDown = true;  

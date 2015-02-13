@@ -63,8 +63,8 @@ angular.module('starter.services', ['btford.socket-io', 'starter.controllers'])
     return $http.get(Config.url + '/meditators'); 
   }
 
-  var meditate = function(mode, latlng) {
-    return $http.post(Config.url + '/api/sessions', {id: user.id, mode: mode, latlng: latlng});
+  var meditate = function(mode, latlng, duration) {
+    return $http.post(Config.url + '/api/sessions', {id: user.id, mode: mode, latlng: latlng, duration: duration});
   }
 
   var terminate = function(meditatorID, latlng) {

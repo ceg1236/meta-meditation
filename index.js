@@ -60,7 +60,6 @@ app.post('/api/sessions/', function(req, res) {
 
 			user.startSession(req.body).then(function(session) {
 				// emit socket event: session-started
-				console.log('socket POST', socket);
 				socket.socketStart();
 				res.status(200).send(session);
 			});

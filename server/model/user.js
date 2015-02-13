@@ -49,11 +49,15 @@ User.prototype.startSession = function(sessionObj) {
 	var deferred = q.defer();
 	var self = this;
 
+	console.log('sessionObj', sessionObj);
 	client.set('sessions:'+self.id, JSON.stringify(sessionObj), function(err, val) {
 		if (err) {
 			deferred.reject(new Error(err));
 		} else {
-			deferred.resolve(val);
+			console.log('Setting an expire on session:'+self.id+' of '+sessionObj.duration);
+			client.expire('session:'+self.id, sessionObj.duration, function(err) {
+				deferred.resolve(val);
+			});
 		}
 	});
 	return deferred.promise;

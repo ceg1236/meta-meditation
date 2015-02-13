@@ -1,4 +1,4 @@
 .idea
 www/lib
-platforms
+platforms/
 node_modules

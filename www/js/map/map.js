@@ -21,7 +21,7 @@ angular.module('tsonga.map', [])
 				  }
 					
 					circle.addTo(map);
-					Meditators.meditate(status.mode, [currentLat, currentLng]); 
+					Meditators.meditate(status.mode, [currentLat, currentLng], status.duration); 
 				} else if (!status.meditating && previous.meditating) {	//remove the circle
 					if (circle) {
 						map.removeLayer(circle); 
