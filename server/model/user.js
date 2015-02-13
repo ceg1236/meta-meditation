@@ -77,7 +77,7 @@ User.findById = function(id) {
 	var deferred = q.defer();
 	if(id === undefined){
 		deferred.reject(new Error("Please provide an id"));
-		return;
+		return deferred.promise;
 	}
 	client.get('user:'+id, function(error, value) {
 		if (error) {

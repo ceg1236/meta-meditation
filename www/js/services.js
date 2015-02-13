@@ -67,7 +67,7 @@ angular.module('starter.services', ['btford.socket-io', 'starter.controllers'])
   }
 
   var terminate = function(meditatorID, latlng) {
-    return $http.delete(Config.url + '/api/sessions' + meditatorID)
+    return $http.delete(Config.url + '/api/sessions/' + meditatorID)
   }
 
   return {
