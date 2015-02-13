@@ -10,9 +10,9 @@ angular.module('tsonga.map', [])
 
 			var circle, currentLat, currentLng;
       scope.meditators = []; 
-			scope.$watch('state', function(status){
+			scope.$watch('state', function(status, previous){
 
-				if (status.meditating) {
+				if (status.meditating && !previous.meditating) {
 
 				  if (status.mode === 'moving') {
 				  	circle = L.circle([currentLat, currentLng], 4, {fillColor: 'red', color: 'red'});
@@ -22,7 +22,7 @@ angular.module('tsonga.map', [])
 					
 					circle.addTo(map);
 					Meditators.meditate(status.mode, [currentLat, currentLng]); 
-				} else {	//remove the circle
+				} else if (!status.meditating && previous.meditating) {	//remove the circle
 					if (circle) {
 						map.removeLayer(circle); 
 					}
