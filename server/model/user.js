@@ -1,5 +1,6 @@
 var client = require('../redisClient.js');
 var q = require('q');
+var socket = require('../socketio.js');
 
 var User = function (obj) {
 	this.id = obj.id;
@@ -56,6 +57,7 @@ User.prototype.startSession = function(sessionObj) {
 		} else {
 			console.log('Setting an expire on session:'+self.id+' of '+sessionObj.duration);
 			client.expire('sessions:'+self.id, sessionObj.duration, function(err, reply) {
+				setTimeout(socket.sessionEnd.bind(socket), sessionObj.duration * 1000); 
 				deferred.resolve(val);
 			});
 		}

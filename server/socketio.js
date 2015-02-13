@@ -12,27 +12,34 @@ function onConnect(socket) {
   socket.emit('connected', socket.id);
 }
 
-module.exports = function (socketio) {
-
-  socketio.on('connection', function (socket) {
-
-    socket.connectedAt = new Date();
-
-    socket.on('disconnect', function () {
-      onDisconnect(socket);
-      console.info('DISCONNECTED');
-    });
-
-    onConnect(socket);
-    console.info('CONNECTED');
-  });
-
-  return {
-    socketStart: function() {
-      socketio.emit('session-start');
-    }, 
-    socketEnd: function() {
-      socketio.emit('session-end');
+module.exports = {
+  sessionStart: function() {
+    if(!this.socketio){
+      throw "Must setup the module before using";
     }
+    this.socketio.emit('session-start');
+  }, 
+  sessionEnd: function() {
+    if(!this.socketio){
+      throw "Must setup the module before using";
+    }
+    this.socketio.emit('session-end');
+  },
+  setup: function (socketio) {
+    this.socketio = socketio;
+    socketio.on('connection', function (socket) {
+
+      socket.connectedAt = new Date();
+
+      socket.on('disconnect', function () {
+        onDisconnect(socket);
+        console.info('DISCONNECTED');
+      });
+
+      onConnect(socket);
+      console.info('CONNECTED');
+    });
+    return this;
   }
 };
+

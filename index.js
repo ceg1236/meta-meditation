@@ -4,8 +4,7 @@ var express = require("express"),
     server = require('http').createServer(app),
     io = require('socket.io')(server),
     User = require('./server/model/user.js'),
-		socket = require('./server/socketio')(io);
-
+		socket = require('./server/socketio').setup(io);
 
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(function (req, res, next) {
@@ -51,7 +50,7 @@ app.post('/api/sessions/', function(req, res) {
 
 			user.startSession(req.body).then(function(session) {
 				// emit socket event: session-started
-				socket.socketStart();
+				socket.sessionStart();
 				res.status(200).send(session);
 			});
 		}
@@ -62,7 +61,7 @@ app.delete('/api/sessions/:id', function(req, res) {
 	User.findById(req.params.id)
 	.then(function(user) {
 		user.stopSession().then(function(session) {
-			socket.socketEnd();
+			session.socketEnd();
 			res.status(200).send({'message':'Namaste'});
 		});
 	});
