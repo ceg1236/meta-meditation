@@ -30,7 +30,10 @@ app.use(bodyParser.json());
 // TODO: location-based GET /meditators/at/:lat/:lng
 
 app.get('/meditators', function (req, res) {
-    res.send(dataStore.meditators);
+		User.findSessions()
+		.then(function(sessions) {
+			res.send(sessions);
+		});
 });
 
 app.post('/api/handshake', function(req, res) {
@@ -48,12 +51,14 @@ app.post('/api/handshake', function(req, res) {
 });
 
 app.post('/api/sessions/', function(req, res) {
+
 	User.findById(req.body.id)
 	.then(function(user) {
 		if (user === null) {
 			res.sendStatus(400);
 		} else {
-			user.startSession().then(function(session) {
+
+			user.startSession(req.body.mode, req.body.latlng).then(function(session) {
 				res.status(200).send(session);
 			});
 		}

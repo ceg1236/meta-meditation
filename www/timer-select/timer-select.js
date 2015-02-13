@@ -9,7 +9,6 @@ angular.module('timer-select', [])
 			duration: '='
 		}, 
 		link: function(scope, element, attributes) {
-			console.log('scope in the timer link', scope); 
 
 			scope.timeOptions = [];
 			for(var i = 0; i <= 60; i++) {
@@ -23,16 +22,12 @@ angular.module('timer-select', [])
 		    var meditationDuration = duration ;//* 60 * 1000;
 		    var startTime = Date.now();  
 		    var endTime = startTime + meditationDuration;
-
-				console.log('Scoping medDur', meditationDuration); 
-				console.log('datenow', startTime)
 				
 				// Check meditationDuration for counting down to zero
 				if (meditationDuration !== null && Date.now() > endTime) {
 					console.log('session expired');
 				}
 			});
-			console.log('medDur', scope.meditationDuration);
 		}
 	}
 })

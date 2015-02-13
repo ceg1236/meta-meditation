@@ -42,6 +42,7 @@ angular.module('starter.services', ['btford.socket-io', 'starter.controllers'])
     .then(function(resp) {
       if (resp.data.id) {
         $localStorage.setObject('user', resp.data);
+        user = $localStorage.getObject('user');
       }
     });
   // write a functional-like function that allows us to wrap 
@@ -63,7 +64,8 @@ angular.module('starter.services', ['btford.socket-io', 'starter.controllers'])
   }
 
   var meditate = function(mode, latlng) {
-    return $http.post(Config.url + '/api/sessions')
+    console.log('1');
+    return $http.post(Config.url + '/api/sessions', {id: user.id, mode: mode, latlng: latlng});
   }
 
   var terminate = function(meditatorID, latlng) {
