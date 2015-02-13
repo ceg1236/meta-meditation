@@ -40,6 +40,8 @@ angular.module('tsonga.map', [])
         // re add all the current ones. keep track of them
 				for(var i = 0; i < newArray.length; i++) {
 					if (newArray[i].id === Meditators.getCurrentUser().id) {
+						scope.state.meditating = true;
+						scope.state.mode = newArray[i].mode;
 						continue; 
 					}
 					otherCircles.push(L.circle( newArray[i].latlng, 100, {fillColor: 'green', color: 'green'}).addTo(map));
