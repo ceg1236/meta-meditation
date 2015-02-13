@@ -1,6 +1,6 @@
 angular.module('tsonga.map', [])
 
-.directive('leafletMap', function(Meditators, mySocket) {
+.directive('leafletMap', function(LocationService, Meditators, mySocket) {
 	return {
 		restrict:'E',
 		scope:{
@@ -21,12 +21,10 @@ angular.module('tsonga.map', [])
 				  }
 					
 					circle.addTo(map);
-					Meditators.meditate(status.mode, [currentLat, currentLng], status.duration); 
 				} else if (!status.meditating && previous.meditating) {	//remove the circle
 					if (circle) {
 						map.removeLayer(circle); 
 					}
-					Meditators.terminate(Meditators.getCurrentUser().id, [currentLat, currentLng]);
 				}
 			}, true);
 			var otherCircles = [];
@@ -76,6 +74,8 @@ angular.module('tsonga.map', [])
 
 			var currentLocation;
 			function onLocationFound(e) {
+				LocationService.onLocationFound(e);
+				
 			    var radius = e.accuracy / 2;
 			    currentLat = e.latlng.lat;
 			    currentLng = e.latlng.lng; 

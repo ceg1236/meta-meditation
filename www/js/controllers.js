@@ -1,13 +1,14 @@
 angular.module('starter.controllers', [])
 
-.controller('DashCtrl', ['$scope', '$timeout', function($scope, $timeout, Meditators) {
+.controller('DashCtrl', ['$scope', '$timeout','Meditators','LocationService', function($scope, $timeout, Meditators, LocationService) {
 
   $scope.state = {}; 
   $scope.state.meditating = false; 
   $scope.state.mode = null;
   $scope.duration = {};
   $scope.duration.value = 10;
-
+  console.log("Meditators service is having some issues");
+  console.log(Meditators);
   $scope.startTimer = function() {
     // pop up a timer selector
     // return time selection
@@ -17,6 +18,7 @@ angular.module('starter.controllers', [])
     $scope.$broadcast('timer-set-countdown', $scope.duration.value);
     $scope.$broadcast('timer-start');
     $scope.state.countDown = true;  
+    Meditators.meditate($scope.state.mode, [LocationService.getCurrentLat(), LocationService.getCurrentLng()], $scope.state.duration); 
   }
 
   $scope.movingTap = function() {
@@ -38,6 +40,8 @@ angular.module('starter.controllers', [])
     $scope.$apply(function() {
         $scope.state.meditating = false; 
         $scope.showTimer = false; 
+        Meditators.terminate(Meditators.getCurrentUser().id);
+
       });
     }, 0);
 

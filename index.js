@@ -5,15 +5,6 @@ var express = require("express"),
     io = require('socket.io')(server),
     User = require('./server/model/user.js'),
 		socket = require('./server/socketio')(io);
-// TEST DATA
-    meditators = [
-        {id: '1', latlng: [37.771938, -122.459509]},
-        {id: '2', latlng: [37.770182, -122.456301]}
-    ];
-
-var dataStore = {
-    meditators: meditators
-};
 
 
 app.use(bodyParser.urlencoded({extended: false}));

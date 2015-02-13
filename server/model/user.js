@@ -55,7 +55,7 @@ User.prototype.startSession = function(sessionObj) {
 			deferred.reject(new Error(err));
 		} else {
 			console.log('Setting an expire on session:'+self.id+' of '+sessionObj.duration);
-			client.expire('session:'+self.id, sessionObj.duration, function(err) {
+			client.expire('sessions:'+self.id, sessionObj.duration, function(err, reply) {
 				deferred.resolve(val);
 			});
 		}

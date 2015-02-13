@@ -35,6 +35,26 @@ angular.module('starter.services', ['btford.socket-io', 'starter.controllers'])
   return mySocket; 
 })
 
+.factory('LocationService', function() {
+  var currentLat;
+  var currentLng;
+  var onLocationFound = function(e){
+    currentLat = e.latlng.lat;
+    currentLng = e.latlng.lng; 
+  };
+  var getCurrentLat = function(){
+    return currentLat;
+  };
+  var getCurrentLng = function(){
+    return currentLng;
+  };
+  return {
+    onLocationFound: onLocationFound,
+    getCurrentLat: getCurrentLat,
+    getCurrentLng: getCurrentLng
+  }
+})
+
 .factory('Meditators', function($http, Config, mySocket, $q, $localStorage) {
   $localStorage.set('user', $localStorage.get('user') || "{}");
   var user = $localStorage.getObject('user');
