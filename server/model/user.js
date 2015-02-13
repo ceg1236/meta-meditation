@@ -45,11 +45,11 @@ User.prototype.save = function() {
 	return deferred.promise;
 };
 
-User.prototype.startSession = function() {
+User.prototype.startSession = function(sessionObj) {
 	var deferred = q.defer();
 	var self = this;
 
-	client.set('sessions:'+self.id, true, function(err, val) {
+	client.set('sessions:'+self.id, JSON.stringify(sessionObj), function(err, val) {
 		if (err) {
 			deferred.reject(new Error(err));
 		} else {
@@ -89,5 +89,31 @@ User.findById = function(id) {
 	return deferred.promise;
 };
 
+User.findSessions = function() {
+	var deferred = q.defer();
+	// Query redis once for each ID, but do it as a transaction.. whatever that means
+	var transaction = client.multi();
+	client.keys('sessions:*', function(error, keys) {
+
+		if (error) {
+			deferred.reject(new Error(error));
+		} else {
+			keys.forEach(function(key) {
+				transaction.get(key)
+			});
+			transaction.exec(function(err, replies){
+				var parsedReplies = replies.map(function(val){
+					try {
+						return JSON.parse(val);
+					} catch(err){
+ 						return val;
+					}
+				});
+				deferred.resolve(parsedReplies);
+			});
+		}
+	});
+	return deferred.promise;
+};
 
 module.exports = User;

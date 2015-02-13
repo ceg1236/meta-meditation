@@ -64,7 +64,6 @@ angular.module('starter.services', ['btford.socket-io', 'starter.controllers'])
   }
 
   var meditate = function(mode, latlng) {
-    console.log('1');
     return $http.post(Config.url + '/api/sessions', {id: user.id, mode: mode, latlng: latlng});
   }
 
@@ -75,7 +74,8 @@ angular.module('starter.services', ['btford.socket-io', 'starter.controllers'])
   return {
     findAll: afterHandshake(findAll), 
     meditate: afterHandshake(meditate),
-    terminate: afterHandshake(terminate)
+    terminate: afterHandshake(terminate),
+    getCurrentUser: function(){ return user; }
   }
 });
 

@@ -32,11 +32,13 @@ angular.module('starter.controllers', [])
   }
 
   $scope.endSession = function() {
-    
+
+    $timeout(function() {
     $scope.$apply(function() {
-      $scope.state.meditating = false; 
-      $scope.showTimer = false; 
-    });
+        $scope.state.meditating = false; 
+        $scope.showTimer = false; 
+      });
+    }, 0);
 
   }
 }]);

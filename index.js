@@ -4,6 +4,7 @@ var express = require("express"),
     server = require('http').createServer(app),
     io = require('socket.io')(server),
     User = require('./server/model/user.js'),
+		socket = require('./server/socketio')(io);
 // TEST DATA
     meditators = [
         {id: '1', latlng: [37.771938, -122.459509]},
@@ -14,7 +15,6 @@ var dataStore = {
     meditators: meditators
 };
 
-require('./server/socketio')(io, dataStore);
 
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(function (req, res, next) {
@@ -58,7 +58,10 @@ app.post('/api/sessions/', function(req, res) {
 			res.sendStatus(400);
 		} else {
 
-			user.startSession(req.body.mode, req.body.latlng).then(function(session) {
+			user.startSession(req.body).then(function(session) {
+				// emit socket event: session-started
+				console.log('socket POST', socket);
+				socket.socketStart();
 				res.status(200).send(session);
 			});
 		}
@@ -69,6 +72,7 @@ app.delete('/api/sessions/:id', function(req, res) {
 	User.findById(req.params.id)
 	.then(function(user) {
 		user.stopSession().then(function(session) {
+			socket.socketEnd();
 			res.status(200).send({'message':'Namaste'});
 		});
 	});
