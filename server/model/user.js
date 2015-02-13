@@ -54,7 +54,6 @@ User.prototype.startSession = function(sessionObj) {
 		if (err) {
 			deferred.reject(new Error(err));
 		} else {
-			console.log('Setting an expire on session:'+self.id+' of '+sessionObj.duration);
 			client.expire('sessions:'+self.id, sessionObj.duration, function(err, reply) {
 				setTimeout(socket.sessionEnd.bind(socket), sessionObj.duration * 1000);
 

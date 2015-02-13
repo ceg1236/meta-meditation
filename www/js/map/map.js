@@ -43,8 +43,6 @@ angular.module('tsonga.map', [])
 						scope.state.meditating = true;
 						scope.state.mode = newArray[i].mode;
 					  if(!wasMeditating){
-					  	console.log("Oops, was not meditating, lets start the timer");
-					  	console.log((Date.now()-newArray[i].startTime)/1000);
 					  	var timeRemaining = newArray[i].duration - Math.ceil((Date.now()-newArray[i].startTime)/1000);
 					    scope.startTimer({time: timeRemaining > 0? timeRemaining : 1});
 					  }

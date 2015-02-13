@@ -47,7 +47,6 @@ app.post('/api/sessions/', function(req, res) {
 		if (user === null) {
 			res.sendStatus(400);
 		} else {
-
 			user.startSession(req.body).then(function(session) {
 				// emit socket event: session-started
 				socket.sessionStart();
@@ -61,7 +60,7 @@ app.delete('/api/sessions/:id', function(req, res) {
 	User.findById(req.params.id)
 	.then(function(user) {
 		user.stopSession().then(function(session) {
-			session.socketEnd();
+			socket.sessionEnd();
 			res.status(200).send({'message':'Namaste'});
 		});
 	});

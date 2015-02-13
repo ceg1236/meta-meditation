@@ -10,7 +10,7 @@ angular.module('starter.controllers', [])
   $scope.startTimer = function(timeRemaining) {
     // pop up a timer selector
     // return time selection
-    console.log("Start Timer RUNNING");
+
     $scope.state.meditating = true;
     $scope.showTimer = true;
     $scope.state.duration = timeRemaining || $scope.duration.value; // copy the duration in the state
