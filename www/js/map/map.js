@@ -4,7 +4,8 @@ angular.module('tsonga.map', [])
 	return {
 		restrict:'E',
 		scope:{
-			state: '='
+			state: '=',
+			startTimer: '&startTimer'
 		},
 		link: function(scope, element, attrs) {
 
@@ -34,16 +35,24 @@ angular.module('tsonga.map', [])
 				for(var j = 0; j < otherCircles.length; j++){
 					map.removeLayer(otherCircles[j]);
 				}
-
+				var wasMeditating = scope.state.meditating;
+				scope.state.meditating = false;
         // re add all the current ones. keep track of them
 				for(var i = 0; i < newArray.length; i++) {
 					if (newArray[i].id === Meditators.getCurrentUser().id) {
 						scope.state.meditating = true;
 						scope.state.mode = newArray[i].mode;
+					  if(!wasMeditating){
+					  	console.log("Oops, was not meditating, lets start the timer");
+					  	console.log((Date.now()-newArray[i].startTime)/1000);
+					  	var timeRemaining = newArray[i].duration - Math.ceil((Date.now()-newArray[i].startTime)/1000);
+					    scope.startTimer({time: timeRemaining > 0? timeRemaining : 1});
+					  }
 						continue; 
 					}
 					otherCircles.push(L.circle( newArray[i].latlng, 100, {fillColor: 'green', color: 'green'}).addTo(map));
 				}
+
 			});
 
 			var map = L.map(element[0], {
@@ -56,7 +65,7 @@ angular.module('tsonga.map', [])
 
 			var refresh = function() {
 				Meditators.findAll().then(function(res) {
-					scope.meditators = res.data; 
+					scope.meditators = res.data;
 				});
 			};
 
@@ -75,7 +84,7 @@ angular.module('tsonga.map', [])
 			var currentLocation;
 			function onLocationFound(e) {
 				LocationService.onLocationFound(e);
-				
+
 			    var radius = e.accuracy / 2;
 			    currentLat = e.latlng.lat;
 			    currentLng = e.latlng.lng; 

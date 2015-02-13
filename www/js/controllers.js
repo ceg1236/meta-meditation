@@ -7,15 +7,14 @@ angular.module('starter.controllers', [])
   $scope.state.mode = null;
   $scope.duration = {};
   $scope.duration.value = 10;
-  console.log("Meditators service is having some issues");
-  console.log(Meditators);
-  $scope.startTimer = function() {
+  $scope.startTimer = function(timeRemaining) {
     // pop up a timer selector
     // return time selection
-
-    $scope.state.meditating = true; 
-    $scope.state.duration = $scope.duration.value; // copy the duration in the state
-    $scope.$broadcast('timer-set-countdown', $scope.duration.value);
+    console.log("Start Timer RUNNING");
+    $scope.state.meditating = true;
+    $scope.showTimer = true;
+    $scope.state.duration = timeRemaining || $scope.duration.value; // copy the duration in the state
+    $scope.$broadcast('timer-set-countdown', $scope.state.duration);
     $scope.$broadcast('timer-start');
     $scope.state.countDown = true;  
     Meditators.meditate($scope.state.mode, [LocationService.getCurrentLat(), LocationService.getCurrentLng()], $scope.state.duration); 

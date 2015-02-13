@@ -49,15 +49,15 @@ User.prototype.save = function() {
 User.prototype.startSession = function(sessionObj) {
 	var deferred = q.defer();
 	var self = this;
-
-	console.log('sessionObj', sessionObj);
+	sessionObj.startTime = Date.now();
 	client.set('sessions:'+self.id, JSON.stringify(sessionObj), function(err, val) {
 		if (err) {
 			deferred.reject(new Error(err));
 		} else {
 			console.log('Setting an expire on session:'+self.id+' of '+sessionObj.duration);
 			client.expire('sessions:'+self.id, sessionObj.duration, function(err, reply) {
-				setTimeout(socket.sessionEnd.bind(socket), sessionObj.duration * 1000); 
+				setTimeout(socket.sessionEnd.bind(socket), sessionObj.duration * 1000);
+
 				deferred.resolve(val);
 			});
 		}
